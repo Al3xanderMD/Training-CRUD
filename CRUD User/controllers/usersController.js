@@ -1,0 +1,148 @@
+const users = require('../data/user.json')
+const UserServices = require('../services/userService')
+const { getPostData } = require('../utils')
+
+const userIdRegex = /^\/api\/users\/[0-9]+$/;
+
+const routeRequest = async (req, res) => {
+    if (req.method === 'GET')
+        await handleGetRequests(req, res);
+    else if (req.method === 'POST')
+        await handlePostRequests(req, res);
+    else if (req.method === 'PUT')
+        handlePutRequests(req, res);
+    else if (req.method === 'DELETE')
+        handleDeleteRequests(req, res);
+}
+
+const handleGetRequests = async (req, res) => {
+    if (req.url === '/api/users') {
+        await getAllUsers(req, res);
+    } else if (req.url.match(userIdRegex)) {
+        await getUserById(req, res);
+    }
+}
+
+const handlePostRequests = async (req, res) => {
+    if (req.url === '/api/users') {
+        await createUser(req, res);
+    }
+}
+
+const handlePutRequests = async (req, res) => {
+    if (req.url.match(userIdRegex)) {
+        await updateUser(req, res);
+    }
+}
+
+const handleDeleteRequests = async (req, res) => {
+    if (req.url.match(userIdRegex)) {
+        await deleteUser(req, res);
+    }
+}
+
+const createUser = async (req, res) => {
+    try {
+        const body = await getPostData(req)
+
+        const { name, email, phone } = JSON.parse(body)
+
+        const user = {
+            name,
+            email,
+            phone
+        }
+
+        const newUser = await UserServices.createUser(user)
+
+        res.writeHead(201, { 'Content-Type': 'application/json' })
+        return res.end(JSON.stringify(newUser))
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const updateUser = async (req, res) => {
+    try {
+        const id = parseInt(req.url.split('/')[3])
+        const user = await UserServices.getUserById(id)
+
+        if (!user) {
+            res.writeHead(404, { 'Content-Type': 'application/json' })
+            return res.end(JSON.stringify({ message: 'User not found' }))
+        } else {
+            const body = await getPostData(req)
+
+            const { name, email, phone } = JSON.parse(body)
+
+            const userData = {
+                name: name || user.name,
+                email: email || user.email,
+                phone: phone || user.phone
+            }
+
+            const updatedUser = await UserServices.updateUser(id, userData)
+
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            return res.end(JSON.stringify(updatedUser))
+        }
+
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const deleteUser = async (req, res) => {
+    try {
+        const id = parseInt(req.url.split('/')[3])
+        const user = await UserServices.getUserById(id)
+
+        if (!user) {
+            res.writeHead(404, { 'Content-Type': 'application/json' })
+            return res.end(JSON.stringify({ message: 'User not found' }))
+        } else {
+            await UserServices.deleteUser(id)
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            return res.end(JSON.stringify({ message: `User ${id} removed` }))
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const getAllUsers = async (req, res) => {
+    try {
+        const users = await UserServices.getAllUsers()
+
+        res.writeHead(200, "ok", { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify(users))
+    } catch (err) {
+        res.writeHead(500, "Internal Server Error", { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ message: 'Internal Server Error' }))
+    }
+}
+
+const getUserById = async (req, res) => {
+    try {
+        const id = parseInt(req.url.split('/')[3])
+        const user = await UserServices.getUserById(id)
+
+        console.log(user)
+        if (user) {
+            res.writeHead(200, "ok", { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify(user))
+        } else {
+            res.writeHead(404, "Not Found", { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ message: 'User not found' }))
+        }
+    }
+    catch (err) {
+        console.log(err)
+        res.writeHead(409, "Bad Request", { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ message: 'User id not in correct format' }))
+    }
+}
+
+module.exports = {
+    routeRequest
+}

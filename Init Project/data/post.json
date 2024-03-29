@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "topic": "Math",
+        "description": "Math is the study of numbers, shapes and patterns. The word comes from the Greek word \"μάθημα\" (máthema), meaning \"science, knowledge, or learning\", and is sometimes shortened to \"maths\" (in England, Australia, Ireland, and New Zealand) or \"math\" (in the United States and Canada).",
+        "year": 2022
+    },
+    {
+        "id": 2,
+        "topic": "Science",
+        "description": "Science is a systematic enterprise that builds and organizes knowledge in the form of testable explanations and predictions about the universe.",
+        "year": 2022
+    },
+    {
+        "id": 3,
+        "topic": "History",
+        "description": "History is the study of the past. Events occurring before the invention of writing systems are considered prehistory.",
+        "year": 2022
+    },
+    {
+        "id": 4,
+        "topic": "Literature",
+        "description": "Literature is any written work that provides information, entertainment, or inspiration. It includes novels, poetry, drama, and essays.",
+        "year": 2022
+    },
+    {
+        "id": 5,
+        "topic": "Art",
+        "description": "Art is the expression or application of human creative skill and imagination, typically in a visual form such as painting or sculpture, producing works to be appreciated primarily for their beauty or emotional power.",
+        "year": 2022
+    },
+    {
+        "id": 6,
+        "topic": "Music",
+        "description": "Music is an art form and cultural activity whose medium is sound organized in time. General definitions of music include common elements such as pitch (which governs melody and harmony), rhythm (and its associated concepts tempo, meter, and articulation), dynamics (loudness and softness), and the sonic qualities of timbre and texture (which are sometimes termed the \"color\" of a musical sound).",
+        "year": 2022
+    },
+    {
+        "id": 7,
+        "topic": "Technology",
+        "description": "Technology is the application of scientific knowledge for practical purposes, especially in industry.",
+        "year": 2022
+    },
+    {
+        "id": 8,
+        "topic": "Philosophy",
+        "description": "Philosophy is the study of general and fundamental questions, such as those about existence, knowledge, values, reason, mind, and language.",
+        "year": 2022
+    },
+    {
+        "id": 9,
+        "topic": "Geography",
+        "description": "Geography is the study of the Earth's landscapes, environments, and the relationships between people and their environments.",
+        "year": 2022
+    },
+    {
+        "id": 10,
+        "topic": "Psychology",
+        "description": "Psychology is the scientific study of the mind and behavior.",
+        "year": 2022
+    },
+    {
+        "id": 11,
+        "topic": "Sociology",
+        "description": "Sociology is the study of society, human behavior, and social interactions.",
+        "year": 2022
+    },
+    {
+        "id": 12,
+        "topic": "Economics",
+        "description": "Economics is the social science that studies how individuals, businesses, governments, and nations make choices about allocating scarce resources to satisfy their unlimited wants.",
+        "year": 2022
+    },
+    {
+        "id": 13,
+        "topic": "Politics",
+        "description": "Politics is the activities associated with governance of a country or area, especially the debate or conflict among individuals or parties having or hoping to achieve power.",
+        "year": 2022
+    },
+    {
+        "id": 14,
+        "topic": "Religion",
+        "description": "Religion is a cultural system of designated behaviors and practices, morals, worldviews, texts, sanctified places, prophecies, ethics, or organizations, that relates humanity to supernatural, transcendental, or spiritual elements.",
+        "year": 2022
+    },
+    {
+        "id": 15,
+        "topic": "Health",
+        "description": "Health is a state of complete physical, mental and social well-being",
+        "year": 2022
+    }
+]
